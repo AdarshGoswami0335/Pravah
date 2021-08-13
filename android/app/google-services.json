@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "422767078715",
+    "firebase_url": "https://pravah-759be-default-rtdb.firebaseio.com",
+    "project_id": "pravah-759be",
+    "storage_bucket": "pravah-759be.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:422767078715:android:4e360e3b2f1d6c06261b1e",
+        "android_client_info": {
+          "package_name": "com.pravah.matrimony"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "422767078715-8b4si1r8n2ahhdhkvg64b58etkqjn7en.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBW5m2_HLZ6TTxPx7sXUOLjav7XmNTjz9g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "422767078715-8b4si1r8n2ahhdhkvg64b58etkqjn7en.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
