@@ -281,7 +281,6 @@ const HomeScreen = props => {
           />
         </TouchableOpacity>
       </View>
-      {mobile === "7772979222" ? (
         <Button
           mode="contained"
           color={Colors.primary}
@@ -290,10 +289,6 @@ const HomeScreen = props => {
           }}>
           Admin Panel
         </Button>
-      ) : (
-        <View></View>
-      )}
-      {}
     </ScrollView>
   );
 };

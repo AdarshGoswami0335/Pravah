@@ -154,10 +154,10 @@ const OverviewScreen = props => {
       });
       const resData = await res.json();
       const premium = await resData.filter(bio => bio.user_type === 'Premium');
-      setPremiumData(premium);
-      console.log(premiumData);
-      setData(resData);
-      setSearchData(resData);
+      const nonpremium = await resData.filter(bio => bio.user_type !== 'Premium');
+      const finalArray = [...premium,...nonpremium]
+      setData(finalArray);
+      setSearchData(finalArray);
     } catch (error) {
       throw error;
     }
@@ -178,97 +178,21 @@ const OverviewScreen = props => {
         method: 'GET',
       });
       const resData = await res.json();
-      setData(resData);
-      setSearchData(resData);
+      const premium = await resData.filter(bio => bio.user_type === 'Premium');
+      const nonpremium = await resData.filter(bio => bio.user_type !== 'Premium');
+      const finalArray = [...premium,...nonpremium]
+      setData(finalArray);
+      setSearchData(finalArray);
     } catch (error) {
       throw error;
     }
-  };
-
-  const renderPremiumItem = ({item}) => {
-    return (
-      <View>
-        <TouchableOpacity
-          style={styles.premium}
-          activeOpacity={0.6}
-          onPress={() => {
-            if (mobile) {
-              props.navigation.navigate('Details', {
-                id: item.id,
-              });
-            } else {
-              props.navigation.navigate('Auth');
-            }
-          }}>
-          <Image
-            resizeMode="contain"
-            source={{uri: item.image}}
-            style={styles.premiumImage}
-          />
-
-          <View style={styles.textContainer}>
-            <Text style={styles.text}>
-              नाम : {item.name} ({item.id}){' '}
-            </Text>
-            <Text style={styles.text}>
-              जन्म तिथि :- {item.dob} {item.yob}
-            </Text>
-            <Text style={styles.text}>मांगलिक स्थिति :- {item.manglik}</Text>
-            <Text style={styles.text}>निवास :- {item.city}</Text>
-          </View>
-
-          <Button
-            mode="contained"
-            color={Colors.primary}
-            style={styles.btn}
-            onPress={() => {
-              if (mobile) {
-                props.navigation.navigate('Details', {
-                  id: item.id,
-                });
-              } else {
-                props.navigation.navigate('Auth');
-              }
-            }}>
-            See Profile
-          </Button>
-          <Image
-            source={{uri: 'https://i.imgur.com/dh8leLc.jpg'}}
-            style={styles.king}
-            resizeMode="cover"
-          />
-        </TouchableOpacity>
-        {item.ad_image === 'No' ? (
-          <View></View>
-        ) : (
-          <TouchableOpacity
-            activeOpacity={0.6}
-            onPress={() => {
-              Linking.openURL(item.ad_link);
-            }}>
-            <Image
-              source={{uri: item.ad_image}}
-              style={{
-                width: width / 1.1,
-                height: height / 3.5,
-                marginHorizontal: 20,
-                alignSelf: 'center',
-                marginVertical: 20,
-                borderRadius: 10,
-              }}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-        )}
-      </View>
-    );
   };
 
   const renderItem = ({item}) => {
     return (
       <View>
         <TouchableOpacity
-          style={styles.normal}
+          style={item.user_type === 'Premium'?styles.premium:styles.normal}
           activeOpacity={0.6}
           onPress={() => {
             if (mobile) {
@@ -311,6 +235,15 @@ const OverviewScreen = props => {
             }}>
             See Profile
           </Button>
+          {
+            item.user_type === 'Premium'?
+            <Image
+            source={{uri: 'https://i.imgur.com/dh8leLc.jpg'}}
+            style={styles.king}
+            resizeMode="cover"
+          />:
+          <View></View>
+          }
         </TouchableOpacity>
         {item.ad_image === 'No' ? (
           <View></View>
@@ -446,7 +379,7 @@ const OverviewScreen = props => {
       ) : (
         <View></View>
       )}
-      {!premium ? (
+      {/*!premium ? (
         <View></View>
       ) : (
         <FlatList
@@ -454,7 +387,7 @@ const OverviewScreen = props => {
           renderItem={renderPremiumItem}
           keyExtractor={(item, index) => item.id}
         />
-      )}
+      )*/}
 
       <FlatList
         data={searchdata}
